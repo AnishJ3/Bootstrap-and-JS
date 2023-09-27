@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body
+        {
+            background-color: rgba(86, 90, 91, 0.693);
+        }
+        table
+        {
+            background-color:rgba(233, 239, 240, 0.693) ;
+        }
+        span
+        {
+            margin-left:5px;
+        }
+        
+        .main-btn
+        {
+            background-color: red;
+            padding:5px 15px;
+            color:white;
+            border-radius:20px;
+            border: 2px solid black;
+        }
+       
+        
+    </style>
+</head>
+<body>
+    <form name="myForm" onsubmit="return f1()" method="post">
+
+
+        <center>
+    
+            <table border="0" bordercolor = "black" bgcolor="white" id="mytable">
+                <caption><big><h2 style="color:blue">Registration form</h2></big><br/></caption>
+                
+                <tr>
+                    <th width ="200px">First Name</th>
+                    <td> <input type="text" size="70" id="first_name"/>
+                    <span id="i1"></span>
+                    </td>
+                    
+                </tr>
+            
+                <tr>
+                    <th width ="200px">Last Name</th>
+                    <td> <input type="text" size="70" id="last_name"/> 
+                    <span id="i2"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width ="200px">Email</th>
+                    <td > <input type="text" size="70" id="email"/> 
+                    <span id="i3"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width ="200px">Password</th>
+                    <td > <input type="password" size="70" id="password"/><span id="i4"></span>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <th width ="200px">Re-enter Password</th>
+                    <td > <input type="password" size="70" id="re-password"/>
+                    <span id="i5"></span>
+                    
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th width ="200px" >Gender:</th>
+                    <td > <input type="radio" name ="male" id="male" value="male"/>Male <hr />
+                        <input type="radio" name ="female" id="female" value="female"/>Female
+                    </td>
+        
+                </tr>
+        
+                <tr>
+                    <th width ="200px">Age:</th>
+                    <td > <input type="text" size="70" id="age"/><span id="i6"></span> </td>
+                </tr>
+        
+                <tr>
+                    <th width ="200px">Phone Number</th>
+                    <td > <input type="text" size="70" id="phone"/> <span id="i7"></span></td>
+                </tr>
+        
+                <tr cellspacing="1">
+                    <th width = "200px" height="100px">Address</th>
+                    <td>
+                        <textarea rows="4" cols="65" id="address"></textarea>
+                        <span style="margin-bottom:30px;"id="i8"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width = "200px">State</th>
+                    <td>
+                        <input type="text" name="state" size="70" id="state"/><span id="i9"></span>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <th ><label for="country">Country</label></td>
+                    <td>
+                        
+                        <select name="country" id ="country" >
+                            <option value="" disabled selected hidden>Choose your country</option>
+                            <option value = "India">India</option>
+                            <option value = "Japan">Japan</option>
+                            <option value= "Others">Others</option>
+                        </select>
+        
+                    </td>
+                </tr>
+        
+                <tr>
+                    <th width = "200px">Languages known</th>
+                    <td>
+                        <label for="Engish">English</label>
+                        <input type="checkbox" name="English" value="English"/>
+        
+                        <label for="Kannada">Kannada</label>
+                        <input type="checkbox" name="Kannada" value="Kannada"/>
+        
+                        <label for="Hindi">Hindi</label>
+                        <input type="checkbox" name="Hindi" value="Hindi"/>
+        
+                        <label for="Telugu">Telugu</label>
+                        <input type="checkbox" name="Telugu" value="Telugu"/>
+                    </td>
+                </tr>
+        
+                <tr>
+        
+                    <td colspan="2">
+                        <input type="checkbox" name="none" id="terms"/>
+                        <label for="none">Hereby i declare all the given details are true </label>
+        
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td colspan="2" align="right">
+                        <span>Log in to <a href= "https://ethnus.com" >Ethnus</a> website</span>
+        
+                    </td>
+                </tr>
+        
+        
+                
+            </table>
+        </center>
+    
+        <br />
+            <center>
+                <button type="submit" class="main-btn" value="submit">REGISTER</button>
+            </center>
+
+    </form>    
+
+    <script>
+
+        function f1()
+        {
+            var first_name = document.getElementById("first_name").value;
+            var last_name = document.getElementById("last_name").value;
+
+           
+
+            if(first_name.length <2)
+            {
+                document.getElementById("i1").innerHTML=`<span style="color:red;">Poor</span>`;
+                
+            }
+            if(last_name.length <2)
+            {
+                document.getElementById("i2").innerHTML=`<span style="color:red;">Poor</span>`;
+            }
+
+            var emailID = document.getElementById("email").value;
+
+            if(emailID.length==0)
+            {
+                document.getElementById("i3").innerHTML=`<span style="color:red;">Poor</span>`;
+            }
+            else
+            {
+
+                atpos = emailID.indexOf("@");
+                dotpos = emailID.lastIndexOf(".");
+                
+                if (atpos < 1 || ( dotpos - atpos < 2 )) {
+    
+                    document.getElementById("i3").innerHTML=`<span style="color:red;">Poor</span>`;
+                }
+
+            }
+            
+
+            var password=document.getElementById("password").value;
+
+            if(pass() == false)
+            {
+                document.getElementById("i4").innerHTML=`<span style="color:red;">Poor</span>`;
+            }
+
+            var re_password=document.getElementById("re-password").value;
+
+            let res= password.localeCompare(re_password);
+
+            if(res !=0 || re_password.length == 0)
+            {
+                document.getElementById("i5").innerHTML=`<span style="color:red;">Poor or mismatch</span>`;
+
+                
+            }
+
+            var age=document.getElementById("age").value;
+
+            console.log(age);
+
+            if(age <= 11 || age>102)
+            {
+                document.getElementById("i6").innerHTML=`<span style="color:red;">Poor</span>`;
+            }
+
+            var phone = document.getElementById("phone").value;
+            
+            var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+            
+            if(re.test(phone)==false)
+            {   
+                document.getElementById("i7").innerHTML=`<span style="color:red;">Poor</span>`;
+
+            }
+
+            var address = document.getElementById("address").value;
+
+            if(address.length <5)
+            {
+                document.getElementById("i8").innerHTML=`<span style="color:red;">Poor</span>`;
+            }
+
+            var state = document.getElementById("state").value;
+
+            if(state.length <3)
+            {
+                document.getElementById("i9").innerHTML=`<span style="color:red;">Poor</span>`;
+            }
+            
+            
+            return false;
+        }
+
+        function pass() 
+        {
+
+            var myInput = document.getElementById("password");
+  // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if(myInput.value.match(lowerCaseLetters)) {
+                
+            } else {
+                return false;
+            }
+
+            
+            var upperCaseLetters = /[A-Z]/g;
+            if(myInput.value.match(upperCaseLetters)) {
+                
+            } else {
+                return false;
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if(myInput.value.match(numbers)) 
+            {
+               
+            } else {
+                return false;
+            }
+
+            // Validate length
+            if(myInput.value.length >= 8) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+            
+        
+    </script>
+
+    
+</body>
+</html>

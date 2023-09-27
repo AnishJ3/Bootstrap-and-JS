@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .container
+        {
+            position:relative;
+            top:400px;
+        }
+
+        #animate
+        {
+            position:absolute;
+            width:500px;
+            height:400px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    
+    <img src="../images/train.png" id="animate" class="animation" width="30%">
+
+    <div class="container">
+        <center>
+            <h1 style="color:blue;">Click the following buttons to handle animation</h1>
+    
+            <button class="button" onclick="start_animation()">Start</button>
+            <button class="button" onclick="stop()">Stop</button>
+        </center>
+
+    </div>
+
+    <script>
+        let id= null;
+        const ele = document.getElementById("animate");
+        var paused=false; var start = false;
+        let pos =0;
+        clearInterval(id);
+        id = setInterval(frame,5);
+
+        function frame()
+        {
+            if(!paused && start)
+            {
+                if(pos == 1000)
+                {
+                    clearInterval(id);
+                    ele.style.left=0;
+                }
+                else
+                {
+                    pos+=1;
+                    ele.style.left =pos+'px';
+                }
+
+            }
+        }
+
+        function start_animation()
+        {
+
+            start=true;
+            paused=false;
+
+        }
+
+        function stop()
+        {
+            paused=true;
+        }
+        </script>
+
+</body>
+</html>

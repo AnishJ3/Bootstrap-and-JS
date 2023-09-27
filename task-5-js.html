@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contact label
+        {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+        #contact_submit
+        {
+            padding-left: 100px;
+        }
+        #contact div
+        {
+            margin-top: 1em;
+        }
+        textarea
+        {
+            vertical-align: top;
+            height: 5em;
+        }
+
+        .error{
+            display: none;
+            margin-left: 10px;
+        }		
+        
+
+        .error_show{
+            color: red;
+            margin-left: 10px;
+        }
+
+        input.invalid, textarea.invalid{
+            border: 2px solid red;
+        }
+
+        input.valid, textarea.valid{
+            border: 2px solid green;
+        }
+
+
+
+        
+    </style>
+</head>
+<body>
+    <form id="contact" onsubmit="return f1()">
+        <!-- Name -->
+        <div >
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"></input>
+            <span id="i1"></span>
+        </div>
+        <!-- Email -->
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email"></input>
+            <span id="i2"></span>				
+        </div>						
+        <!--Website -->
+        <div>
+            <label for="website">Website:</label>
+            <input type="text" id="website" name="website"></input>
+            <span id="i3"></span>									
+        </div>						
+        <!-- Message -->
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea>
+            <span id="i4"></span>												
+        </div>					
+        <!-- Submit Button -->
+        <div id="contact_submit">				
+            <button type="submit" >Submit</button>
+        </div>
+    </form>
+
+    <script>
+
+        function f1()
+        {
+            var name= document.getElementById("name").value;
+            var email= document.getElementById("email").value;
+            var website= document.getElementById("website").value;
+            var message= document.getElementById("message").value;
+            var ans=true;
+            var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+
+
+            if(!regName.test(name)){
+                    document.getElementById("i1").innerHTML=`<span style="color:red;">  This field is required</span>`;
+                    document.getElementById("name").style.borderColor="red";
+                    ans=false;
+            }
+
+            if(email.length ==0)
+            {
+                document.getElementById("i2").innerHTML=`<span style="color:red;">  A valid email is required</span>`;
+                document.getElementById("email").style.borderColor="red";
+                ans=false;
+            }
+            else
+            {
+
+                atpos = email.indexOf("@");
+                dotpos = email.lastIndexOf(".");
+                
+                if (atpos < 1 || ( dotpos - atpos < 2 )) {
+    
+                    document.getElementById("i2").innerHTML=`<span style="color:red;">  A valid email is required</span>`;
+                    document.getElementById("email").style.borderColor="red";
+                    ans=false;
+                }
+
+            }
+
+            if(!isValidUrl(website))
+            {
+                document.getElementById("i3").innerHTML=`<span style="color:red;">  A valid url is required</span>`;
+                document.getElementById("email").style.borderColor="red";
+                ans=false;
+
+            }
+
+            if(message.length ==0)
+            {
+                document.getElementById("i4").innerHTML=`<span style="color:red;">  This field is required</span>`;
+                document.getElementById("message").style.borderColor="red";
+                ans=false;
+
+            }
+
+            return ans;
+            
+        }
+        function isValidUrl(string) 
+        {
+            try {
+                new URL(string);
+                return true;
+            } 
+            catch (err) {
+                return false;
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

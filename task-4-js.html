@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button class="button" onclick="document.getElementById('span1').innerHTML = f1()">show date</button><br>
+    <p id="span1" class="s1"></p><br><br>
+
+    
+    <button type="button" onclick="document.getElementById('s2').innerHTML = Date()">show Time</button><br>
+        <span id="s2"></span>
+    
+
+    <script>
+
+        function f1()
+        {
+
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+  
+            var d = new Date();
+            var curr= monthNames[d.getMonth()]
+
+            var tex = d.getDate() +'/'+ curr
+            + '/' + d.getFullYear();
+
+            return tex;
+
+        }
+
+        
+    </script>
+</body>
+</html>
